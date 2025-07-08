@@ -29,16 +29,20 @@ CLASS_NAMES = {
     2: "NaoIdentificado"
 }
 
+
 tracker = BotSort(
     reid_weights=Path(REID_MODEL_PATH),
     device=device,
     half=False,
-    track_buffer=120,
-    appearance_thresh=0.25,
-    match_thresh=0.8,
-    new_track_thresh=0.7,
-    cmc_method='sof'
+    track_buffer=2000,
+    appearance_thresh=0.5,
+    track_low_thresh = 0.001,
+    match_thresh=0.9,
+    new_track_thresh=0.8,
+    cmc_method='sof',
+    fuse_first_associate = True
 )
+
 
 vid = cv2.VideoCapture(VIDEO_PATH)
 
@@ -55,7 +59,7 @@ while True:
     frame_processed, ratio, (dw, dh) = preprocess(frame)
     
     # Detecção
-    results = model.predict(frame_processed, stream=True, verbose=False, device=device)
+    results = model.predict(frame_processed, verbose=False, device=device)
     
     detections = []
     for r in results:
