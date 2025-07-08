@@ -1,20 +1,20 @@
 import cv2
-import numpy as np
+import numpy as np 
 from pathlib import Path
 from ultralytics import YOLO
 from boxmot import BotSort
 
 # --- CONFIGURAÇÕES ---
 VIDEO_PATH = 'projeto_cam_ufcat/cam4.mp4'
-YOLO_MODEL_PATH = 'yolov8n.pt'
-REID_MODEL_PATH = 'osnet_x0_25_msmt17.pt'
+YOLO_MODEL_PATH = 'modelo_genero_v12m_28-05-25_adam_imgz640-batch10_200epochs.pt'
+REID_MODEL_PATH = 'osnet_ain_x1_0_msmt17.pt'
 
 # --- INICIALIZAÇÃO DOS MODELOS ---
 model = YOLO(YOLO_MODEL_PATH)
 tracker = BotSort(
     reid_weights=Path(REID_MODEL_PATH),
     device='cuda:0',
-    half=False # 'half=False' é o mesmo que fp16=False, está correto
+    half=False 
 )
 vid = cv2.VideoCapture(VIDEO_PATH)
 
@@ -37,7 +37,6 @@ while True:
 
     detections = np.array(detections)
 
-    # Agora o rastreador receberá o formato correto
     tracker.update(detections, frame)
 
     tracker.plot_results(frame, show_trajectories=True)
