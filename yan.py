@@ -37,7 +37,7 @@ tracker = BotSort(
     appearance_thresh=0.25,
     match_thresh=0.8,
     new_track_thresh=0.7,
-    cmc_method='ecc'
+    cmc_method='sof'
 )
 
 vid = cv2.VideoCapture(VIDEO_PATH)
