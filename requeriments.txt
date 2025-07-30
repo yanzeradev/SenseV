@@ -35,5 +35,8 @@ import torch.nn as nn
 TROCAR from torch._six import container_abcs 
 POR import collections.abc as container_abcs
 
-NO DIRETORIO DO .TOML
+\TransReID\model\make_model.py
+from ..loss.metric_learning import Arcface, Cosface, AMSoftmax, CircleLoss
+
+MOVER O .TOML PARA MESMO DIRETORIO DO TRANSREID E:
 pip install -e .
