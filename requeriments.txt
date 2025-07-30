@@ -17,9 +17,8 @@ https://github.com/damo-cv/TransReID.git
 
 ALTERAÇÕES NECESSÁRIAS:
 C:\Users\Yanzera\Documents\DEV\TRANSREID_TESTE\venv\Lib\site-packages\boxmot\appearance\reid\auto_backend.py
-import torch.nn as nn
-super().__init__() 
-
+import torch.nn as nn     
+        super().__init__() 
         # --- CÓDIGO A SER ADICIONADO ---
         # Verifica se um modelo pré-inicializado foi passado em vez de um caminho de arquivo
         if isinstance(weights, nn.Module):
