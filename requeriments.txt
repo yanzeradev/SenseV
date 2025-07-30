@@ -16,7 +16,7 @@ https://github.com/damo-cv/TransReID.git
 
 
 ALTERAÇÕES NECESSÁRIAS:
-C:\Users\Yanzera\Documents\DEV\TRANSREID_TESTE\venv\Lib\site-packages\boxmot\appearance\reid\auto_backend.py
+\venv\Lib\site-packages\boxmot\appearance\reid\auto_backend.py
 import torch.nn as nn     
         super().__init__() 
         # --- CÓDIGO A SER ADICIONADO ---
@@ -31,6 +31,6 @@ import torch.nn as nn
             return
 
 
-C:\Users\Yanzera\Documents\DEV\SenseVision\TransReID\model\backbones\vit_pytorch.py
+\TransReID\model\backbones\vit_pytorch.py
 TROCAR from torch._six import container_abcs 
 POR import collections.abc as container_abcs
