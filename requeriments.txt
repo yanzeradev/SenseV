@@ -4,11 +4,10 @@ python -m venv venv
 python -m pip install --upgrade pip
 
 PIP:
-opencv-python
 boxmot
 ultralytics
-DRIVERS PARA UTILIZAÇÃO DE CUDA NO TREINAMENTO DO MODELO:
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118  
+
+DRIVERS PARA UTILIZAÇÃO DE CUDA NO TREINAMENTO DO MODELO: 
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 CLONES:
