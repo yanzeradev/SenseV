@@ -19,7 +19,6 @@ class TransReIDWrapper(torch.nn.Module):
         super().__init__()
         self.device = device
 
-        # --- LÓGICA DE CARREGAMENTO (JÁ ESTÁ CORRETA) ---
         if config_file:
             cfg.merge_from_file(config_file)
         
@@ -52,14 +51,14 @@ class TransReIDWrapper(torch.nn.Module):
         
         return features.cpu()
 
-    # --- MÉTODO ADICIONADO PARA COMPATIBILIDADE COM BOXMOT ---
+    # --- COMPATIBILIDADE COM BOXMOT ---
     def get_features(self, bboxes, img):
         """
         Recorta as imagens com base nas bboxes e extrai as features.
         Esta é a função que o BoT-SORT espera encontrar.
         """
         if bboxes is None or len(bboxes) == 0:
-            return torch.empty(0, 384) # Dimensão do embedding do ViT-Small
+            return torch.empty(0, 384) 
 
         crops = []
         for bbox in bboxes:
@@ -70,7 +69,7 @@ class TransReIDWrapper(torch.nn.Module):
             
             crop = img[y1:y2, x1:x2]
             
-            # Pula crops vazios/inválidos que podem ocorrer
+            # Pula crops vazios que podem ocorrer
             if crop.shape[0] > 0 and crop.shape[1] > 0:
                 crops.append(crop)
 
