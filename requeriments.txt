@@ -34,3 +34,6 @@ import torch.nn as nn
 \TransReID\model\backbones\vit_pytorch.py
 TROCAR from torch._six import container_abcs 
 POR import collections.abc as container_abcs
+
+NO DIRETORIO DO .TOML
+pip install -e .
