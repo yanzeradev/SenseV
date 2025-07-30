@@ -7,8 +7,6 @@ from boxmot.utils.ops import letterbox
 import torch
 import sys
 
-sys.path.append(r"C:\Users\Yanzera\Documents\DEV\SenseVision\TransReID") 
-
 import torch
 import torchvision.transforms as T
 from PIL import Image
@@ -82,8 +80,8 @@ class TransReIDWrapper(torch.nn.Module):
         return self.forward(crops)
 
 # --- CONFIGURAÇÕES ---
-VIDEO_PATH = 'projeto_cam_ufcat/cam4.mp4'
-YOLO_MODEL_PATH = 'modelo_genero_v12m_28-05-25_adam_imgz640-batch10_200epochs.pt'
+VIDEO_PATH = r'SenseV\cam4.mp4'
+YOLO_MODEL_PATH = r'SenseV\modelo_genero_v12m_28-05-25_adam_imgz640-batch10_200epochs.pt'
 TRANSREID_MODEL_PATH = r"TransReID\pesos\vit_base.pth" 
 TRANSREID_CONFIG_FILE = None
 MIN_HITS_FOR_ID = 20
