@@ -7,19 +7,14 @@ from boxmot.utils.ops import letterbox
 import torch
 import sys
 
-
-# Adicione o caminho absoluto para o diretório raiz do TransReID
-# Certifique-se de que este caminho está correto no seu sistema
 sys.path.append(r"C:\Users\Yanzera\Documents\DEV\SenseVision\TransReID") 
 
 import torch
 import torchvision.transforms as T
 from PIL import Image
 
-# --- NOVOS IMPORTS E LÓGICA DE CONFIGURAÇÃO ---
 from TransReID.config import cfg
 from TransReID.model import make_model
-# ----------------------------------------------------
 
 class TransReIDWrapper(torch.nn.Module):
     def __init__(self, config_file, model_path, device):
@@ -84,7 +79,6 @@ class TransReIDWrapper(torch.nn.Module):
         if not crops:
             return torch.empty(0, 384)
 
-        # Chama o método forward existente para fazer o trabalho pesado
         return self.forward(crops)
 
 # --- CONFIGURAÇÕES ---
@@ -107,7 +101,7 @@ CLASS_COLORS = {
     2: (0, 165, 255) # Laranja para classe 2
 }
 
-# Nomes das classes (substitua pelos seus nomes reais)
+# Nomes das classes
 CLASS_NAMES = {
     0: "Homem",
     1: "Mulher",
@@ -123,9 +117,9 @@ transreid = TransReIDWrapper(
 
 # Inicializa o tracker com o modelo ReID
 tracker = BotSort(
-    reid_weights=transreid, # Passa a instância do wrapper para o BoT-SORT
+    reid_weights=transreid,
     device=device,
-    half=True, # Use 'False' se não estiver usando precisão mista
+    half=True, 
     track_buffer=200,
     appearance_thresh=0.4,
     track_low_thresh = 0.001,
@@ -152,8 +146,6 @@ while True:
     # Detecção com YOLO
     results = model(frame, verbose=False)
     
-    # Passa os resultados diretamente para o tracker
-    # O BoT-SORT integrado com Ultralytics pode extrair as caixas, confianças e classes
     tracks = tracker.update(results[0].boxes.data.cpu().numpy(), frame)
 
     current_track_ids = set()
